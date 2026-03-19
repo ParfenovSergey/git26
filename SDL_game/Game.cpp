@@ -1,6 +1,7 @@
-#include "test.hpp"
+#include "Game.hpp"
 
 #include <iostream>
+
 int main(int argv, char** argc) {
   Game g;
   if (g.init("TEST WINDOW", 640, 480,
