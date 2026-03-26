@@ -23,4 +23,5 @@ class Game {
   bool running_ = false;
   SDL_Window* window_ = nullptr;
   SDL_Renderer* renderer_ = nullptr;
+  int currentFrame_;
 };

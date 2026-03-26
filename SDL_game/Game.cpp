@@ -2,10 +2,11 @@
 
 #include <iostream>
 
+#include "TextureManager.hpp"
+
 int main(int argv, char** argc) {
   Game g;
-  if (g.init("TEST WINDOW", 640, 480,
-             SDL_WINDOW_RESIZABLE | SDL_WINDOW_MINIMIZED)) {
+  if (g.init("TEST WINDOW", 640, 480, SDL_WINDOW_RESIZABLE)) {
     g.startGame();
   } else {
     return 1;
@@ -27,7 +28,14 @@ bool Game::init(std::string title, int w, int h, int flags) {
     renderer_ = SDL_CreateRenderer(window_, NULL);
     if (renderer_ != 0) {
       std::cout << "renderer created" << std::endl;
-      SDL_SetRenderDrawColor(renderer_, 255, 0, 0, 255);
+      if (TextureManager::Instance().load("assets/test.bmp", "main_char",
+                                          renderer_) != 0) {
+        std::cout << "main texture created" << std::endl;
+      } else {
+        std::cerr << "texture error" << std::endl;
+        return false;
+      }
+
     } else {
       std::cerr << "renderer error" << std::endl;
       return false;
@@ -40,11 +48,16 @@ bool Game::init(std::string title, int w, int h, int flags) {
 }
 
 void Game::render() {
+  SDL_SetRenderDrawColor(renderer_, 255, 0, 0, 255);
   SDL_RenderClear(renderer_);
+
+  TextureManager::Instance().drawFrame("main_char", 100, 100, 200, 200, 1,
+                                       currentFrame_, renderer_);
+
   SDL_RenderPresent(renderer_);
 }
 
-void Game::update() {}
+void Game::update() { currentFrame_ = int(((SDL_GetTicks() / 1000) % 6)); }
 
 void Game::handleEvents() {
   SDL_Event event;
