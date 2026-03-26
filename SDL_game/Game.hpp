@@ -1,10 +1,11 @@
+#pragma once
+
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_main.h>
 
 #include <string>
 
-SDL_Window* g_pWindow = nullptr;
-SDL_Renderer* g_pRenderer = nullptr;
+#include "GameObject.hpp"
+#include "Player.hpp"
 
 class Game {
  public:
@@ -18,10 +19,11 @@ class Game {
   void startGame() { running_ = true; }
   void stopGame() { running_ = false; }
   bool isRunning() { return running_; }
+  GameObject go;
+  Player main_char;
 
  private:
   bool running_ = false;
-  SDL_Window* window_ = nullptr;
-  SDL_Renderer* renderer_ = nullptr;
-  int currentFrame_;
+  SDL_Window* window_;
+  SDL_Renderer* renderer_;
 };

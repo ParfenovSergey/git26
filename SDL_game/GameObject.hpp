@@ -1,14 +1,16 @@
-#pragma once 
-#include <iostream>
+#pragma once
 #include <SDL3/SDL.h>
 
-class GameObject{
+#include <iostream>
+
+class GameObject {
  protected:
-  std::string texture_tag;
+  std::string texture_tag_;
   int currentFrame_;
-  int curentRow_;
+  int currentRow_;
   float x_, y_;
   float w_, h_;
+
  public:
   void load(std::string tag, float x, float y, float w, float h);
   void draw(SDL_Renderer* renderer);
