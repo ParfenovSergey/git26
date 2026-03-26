@@ -8,4 +8,7 @@ class Player : public GameObject {
   void draw(SDL_Renderer* renderer);
   void update();
   void clean();
+
+ private:
+  int dir = 1;
 };
