@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "InputHandler.hpp"
 #include "TextureManager.hpp"
 
 bool Game::init(std::string title, int w, int h, int flags) {
@@ -63,6 +64,12 @@ void Game::handleEvents() {
         break;
       case SDL_EVENT_WINDOW_RESIZED:
         std::cout << "resize" << std::endl;
+        break;
+      case SDL_EVENT_MOUSE_BUTTON_DOWN:
+      case SDL_EVENT_MOUSE_BUTTON_UP:
+      case SDL_EVENT_MOUSE_MOTION:
+      case SDL_EVENT_KEY_DOWN:
+        InputHandler::Instance()->handle(event);
         break;
       default:
         break;
