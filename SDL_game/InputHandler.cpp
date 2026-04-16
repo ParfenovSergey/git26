@@ -64,6 +64,9 @@ void InputHandler::onMouseMotion(SDL_Event event) {
 }
 void InputHandler::onKeyDown(SDL_Event event) {
   keystates_ = SDL_GetKeyboardState(0);
+  if (isKeyDown(SDL_SCANCODE_DOWN)) {
+    std::cout << "down" << std::endl;
+  }
 }
 
 bool InputHandler::isKeyDown(SDL_Scancode key) {
