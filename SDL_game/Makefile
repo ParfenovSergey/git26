@@ -11,6 +11,7 @@ EXECUTABLE  := game.exe
 
 all: $(BIN)/$(EXECUTABLE)
 
+# Для windows требуется заменить clear на cls 
 run: clean all
 	clear
 	./$(BIN)/$(EXECUTABLE)
